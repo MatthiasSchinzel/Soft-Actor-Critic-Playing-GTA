@@ -115,7 +115,7 @@ model.compile(
     optimizer='sgd',
     loss=sm.losses.bce_jaccard_loss,
     metrics=[sm.metrics.iou_score],)
-model.load_weights("Weigths/43-0.1618-0.7353_v2.h5")
+model.load_weights("Weights/43-0.1618-0.7353_v2.h5")
 hwnd = win32gui.FindWindow(None, "Grand Theft Auto V")
 rect = win32gui.GetWindowRect(hwnd)
 x = rect[0]
@@ -123,7 +123,7 @@ y = rect[1]
 w = rect[2] - x
 h = rect[3] - y
 enc = Encoder()
-m = torch.load('Weigths/policy_network.pt', map_location=torch.device('cpu'))
+m = torch.load('Weights/policy_network.pt', map_location=torch.device('cpu'))
 print(x)
 print(y)
 print(w)
@@ -147,7 +147,6 @@ with mss.mss() as sct:
         action_space = np.append(action_space, past_actions.flatten())
         past_actions = np.roll(past_actions, 1)
         action = m.get_action(action_space)
-        action = action.detach().numpy()
         past_actions[0, 0] = action[0]
         past_actions[0, 1] = action[1]
         update_gamecontrolls(action[0], action[1])
