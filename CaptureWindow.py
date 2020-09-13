@@ -115,7 +115,7 @@ model.compile(
     optimizer='sgd',
     loss=sm.losses.bce_jaccard_loss,
     metrics=[sm.metrics.iou_score],)
-model.load_weights("Weigths/43-0.1618-0.7353_v2")
+model.load_weights("Weigths/43-0.1618-0.7353_v2.h5")
 hwnd = win32gui.FindWindow(None, "Grand Theft Auto V")
 rect = win32gui.GetWindowRect(hwnd)
 x = rect[0]
